@@ -9,9 +9,11 @@
     box-sizing: border-box; /* para os elementeos não ultrapassarem a borda */
 }
 
+/* elemento base */
 body {
     background-color: var(--preto);
-    font-family: 'Times New Roman', Times, serif
+    font-family: 'Times New Roman', Times, serif;
+    color: white;
 }
 
 header .container {
@@ -36,4 +38,26 @@ header nav a {
 
 header nav a:hover {
     color: #fff;
+}
+
+/* filme principal */
+.filme-principal {
+    font-size: 16px;
+    background: linear-gradient(rgba(0,0,0,.50), rgba(0,0,0,.50)100%), url('/img/la-casa.jpg');
+
+    height: 400px;
+    background-size: cover;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.filme-principal .descricao {
+    margin-bottom: 30px;
+}
+
+.titulo {
+    font-size: 40px;
 }
