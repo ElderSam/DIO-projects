@@ -41,6 +41,7 @@ function start() {
         moveFundo();
         moveJogador();
         moveInimigo1();
+        moveInimigo2();
     }
 
     //Função que movimenta o fundo do jogo
@@ -89,6 +90,15 @@ function start() {
             $("#inimigo1")
                 .css("left", 694) // volta para a direita
                 .css("top", posicaoY);
+        }
+    }
+
+    function moveInimigo2() {
+        posicaoX = parseInt($("#inimigo2").css("left"));
+        $("#inimigo2").css("left", posicaoX-3); //move para a esquerda
+
+        if(posicaoX <= 0) {
+            $("#inimigo2").css("left", 775); //volta para a direita
         }
     }
     
