@@ -10,6 +10,8 @@ function start() {
     
     //Principais variáveis do jogo
     var jogo = {}
+    var velocidade = 5;
+    var posicaoY = parseInt(Math.random() * 334);
     var TECLA = {
         W: 87,
         UP: 38,
@@ -36,12 +38,13 @@ function start() {
     jogo.timer = setInterval(loop,30); //chama loop() a cada 30ms
 
     function loop() {
-        movefundo();
+        moveFundo();
         moveJogador();
+        moveInimigo1();
     }
 
     //Função que movimenta o fundo do jogo
-	function movefundo() {
+	function moveFundo() {
         esquerda = parseInt($("#fundoGame").css("background-position"));
         $("#fundoGame").css("background-position",esquerda-1);   
     }
@@ -71,6 +74,22 @@ function start() {
             //Chama função Disparo	
         }
     
+    }
+
+    function moveInimigo1() {
+        posicaoX = parseInt($("#inimigo1").css("left"));
+        
+        $("#inimigo1")
+            .css("left", posicaoX-velocidade) //move para a esquerda
+            .css("top", posicaoY);
+        
+        if(posicaoX <= 0) {
+            posicaoY = parseInt(Math.random() * 334); //valor aleatório 0-334
+
+            $("#inimigo1")
+                .css("left", 694) // volta para a direita
+                .css("top", posicaoY);
+        }
     }
     
 }
