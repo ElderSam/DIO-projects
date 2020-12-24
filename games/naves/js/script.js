@@ -198,6 +198,7 @@ function start() {
         // Disparo com o inimigo1
         if(colisao3.length > 0) {
             pontos += 100; // jogador recebe pontos
+            velocidade += 0.3; // aumenta a velocidade do inimigo1 (helicóptero) a cada abate
             inimigo1X = parseInt($("#inimigo1").css("left"));
             inimigo1Y = parseInt($("#inimigo1").css("top"));
 
