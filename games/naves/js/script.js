@@ -8,6 +8,7 @@ function start() {
                             <div id='inimigo2'></div>
                             <div id='amigo' class='anima3'></div>
                             <div id='placar'></div>
+                            <div id='energia'></div>
     `);
     
     //Principais variáveis do jogo
@@ -17,6 +18,7 @@ function start() {
     var pontos = 0;
     var amigosSalvos = 0;
     var amigosPerdidos = 0;
+    var energiaAtual = 3;
     var velocidade = 5;
     var posicaoY = parseInt(Math.random() * 334);
     var TECLA = {
@@ -52,6 +54,7 @@ function start() {
         moveAmigo();
         colisao();
         placar();
+        energia();
     }
 
     //Função que movimenta o fundo do jogo
@@ -158,6 +161,7 @@ function start() {
         var colisao6 = ($("#inimigo2").collision($("#amigo")));
 
         if(colisao1.length > 0) { //verificar se teve colisão com o inimigo1
+            energiaAtual--;
             inimigo1X = parseInt($("#inimigo1").css("left"));
             inimigo1Y = parseInt($("#inimigo1").css("top"));
             explosao1(inimigo1X, inimigo1Y);
@@ -170,6 +174,7 @@ function start() {
 
         // colisão do jogador com o inimigo2 (caminhão)
         if(colisao2.length > 0) {
+            energiaAtual--;
             inimigo2X = parseInt($("#inimigo2").css("left"));
             inimigo2Y = parseInt($("#inimigo2").css("top"));
             explosao2(inimigo2X, inimigo2Y);
@@ -262,7 +267,7 @@ function start() {
         div2.css("left", inimigo2X);
         div2.animate({width: 200, opacity: 0}, "slow");
 
-        var tempoExplosao = window.setInterval(removeExplosao2, 1000);
+        var tempoExplosao2 = window.setInterval(removeExplosao2, 1000);
 
         function removeExplosao2() {
             div2.remove();
@@ -301,5 +306,14 @@ function start() {
 
     function placar() {
         $("#placar").html(`<h2> Pontos: ${pontos} Salvos: ${amigosSalvos} Perdidos: ${amigosPerdidos} </h2>`)
+    }
+
+    // Barra de energia
+    function energia() {
+        $("#energia").css("background-image", `url(imgs/energia${energiaAtual}.png`);
+
+        if(energiaAtual == 0) {
+            // Game Over
+        }
     }
 }
