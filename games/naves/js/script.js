@@ -314,6 +314,8 @@ function start() {
 
         if(energiaAtual == 0) {
             // Game Over
+            alert('GAME OVER :(')
+            
         }
     }
 }
