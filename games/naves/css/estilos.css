@@ -10,7 +10,7 @@ h1 {
 }
 
 body {
-	background-image:url(../imgs/fundo.jpg);
+	background: black;
 }
 
 #container{
@@ -74,6 +74,12 @@ body {
  	margin-top:100px;
 	text-align:center;
 	padding:10px;
+}
+
+#inicio button {
+	cursor: pointer;
+	font-family: Titulo;
+	font-size: 16px;
 }
 
 .anima1 {
