@@ -339,6 +339,8 @@ function start() {
         musica.pause();
         somGameover.play();
 
+        recordMsg = updateRecord();
+
         window.clearInterval(jogo.timer); //para o gameLoop do jogo
         jogo.timer = null;
 
@@ -352,10 +354,28 @@ function start() {
         $("#fim").html(`
             <h1> Game Over </h1>
             <p>Sua pontuação foi: ${pontos}</p>
+            <strong>${recordMsg}</strong><br>
             <button id='reinicia' onClick=reiniciaJogo()>
                 <h3>Jogar Novamente</h3>
             </button>
         `);
+    }
+
+    function updateRecord() {
+        recordPoints = localStorage.getItem('rescueGamePoints');
+        let recordMsg;
+    
+        if((recordPoints > 0) && (pontos > recordPoints)) {
+            
+            localStorage.setItem('rescueGamePoints', pontos);
+            recordMsg = 'Parabéns!! Você ultrapassou o recorde de';
+        } else {
+            recordMsg = 'O recode atual é de';
+        }
+        console.log(`PONTOS ATUAIS ${pontos}, RECORDE: ${recordPoints}`);
+
+        recordMsg += ` ${recordPoints} pontos`;
+        return recordMsg;
     }
 }
 
