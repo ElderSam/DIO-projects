@@ -68,7 +68,7 @@ body {
 #inicio {
 	width:350px;
 	height:200px;
-	background-color:#FFF;
+	background-color: rgba(255, 255, 255, 0.7);
  	margin-left:auto;
     margin-right:auto;
  	margin-top:100px;
@@ -252,8 +252,8 @@ h3 {
 
 #fim {
 	width: 350px;
-	height: 200px;
-	background-color: #FFF;
+	height: 220px;
+	background-color: rgba(255, 255, 255, 0.7);
 	margin-left: auto;
 	margin-right: auto;
 	margin-top: 100px;
@@ -263,4 +263,8 @@ h3 {
 
 #reinicia {
 	cursor: pointer;
+}
+
+#reinicia h3 {
+	color: black;
 }
