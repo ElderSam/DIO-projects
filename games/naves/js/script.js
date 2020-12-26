@@ -1,3 +1,22 @@
+var fimDeJogo = false;
+var songs = true;
+
+function stopSongs() {
+        if(songs) {
+            songs = false;
+            musica.pause();
+            somGameover.pause();
+
+        }else {
+            songs = true;
+
+            if(fimDeJogo) {
+                somGameover.play();
+            } else {
+                musica.play();
+            }
+        }
+}
 
 function start() {
 
@@ -14,7 +33,6 @@ function start() {
     //Principais variáveis do jogo
     var jogo = {}
     var podeAtirar = true;
-    var fimDeJogo = false;
     var pontos = 0;
     var amigosSalvos = 0;
     var amigosPerdidos = 0;
@@ -43,7 +61,7 @@ function start() {
 
     //Música em loop
     musica.addEventListener("ended", function(){ musica.currentTime = 0; musica.play(); }, false);
-    musica.play();
+    if(songs) musica.play();
 
 	//Verifica se o usuário pressionou alguma tecla	
 	$(document).keydown(function(e){
@@ -137,7 +155,7 @@ function start() {
 
     function disparo() {
         if(podeAtirar) {
-            somDisparo.play();
+            if(songs) somDisparo.play();
             podeAtirar = false; // para fazer outro disparo enquando executa as funções abaixo
 
             topo = parseInt($("#jogador").css("top"))
@@ -226,7 +244,7 @@ function start() {
 
         // Jogador com o amigo
         if(colisao5.length > 0) {
-            somResgate.play();
+            if(songs) somResgate.play();
             amigosSalvos++;
             reposicionaAmigo();
             $("#amigo").remove();
@@ -244,7 +262,7 @@ function start() {
     }
 
     function explosao1(inimigo1X, inimigo1Y) {
-        somExplosao.play();
+        if(songs) somExplosao.play();
         $("#fundoGame").append("<div id='explosao1'></div>");
         $("#explosao1").css("background-image", "url(imgs/explosao.png)");
         var div = $("#explosao1");
@@ -275,7 +293,7 @@ function start() {
     }
 
     function explosao2(inimigo2X, inimigo2Y) {
-        somExplosao.play();
+        if(songs) somExplosao.play();
         $("#fundoGame").append("<div id='explosao2'></div>");
         $("#explosao2").css("background-image", "url(imgs/explosao.png)")
         var div2 = $("#explosao2");
@@ -307,7 +325,7 @@ function start() {
 
     // Explosão3
     function explosao3(amigoX, amigoY) {
-        somPerdido.play();
+        if(songs) somPerdido.play();
         $("#fundoGame").append("<div id='explosao3' class='anima4'></div>");
         $("#explosao3")
             .css("top", amigoY)
@@ -337,7 +355,7 @@ function start() {
     function gameOver() {
         fimDeJogo = true;
         musica.pause();
-        somGameover.play();
+        if(songs) somGameover.play();
 
         recordMsg = updateRecord();
 
@@ -372,7 +390,6 @@ function start() {
         } else {
             recordMsg = 'O recode atual é de';
         }
-        console.log(`PONTOS ATUAIS ${pontos}, RECORDE: ${recordPoints}`);
 
         recordMsg += ` ${recordPoints} pontos`;
         return recordMsg;
