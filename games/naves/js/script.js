@@ -1,5 +1,10 @@
 var fimDeJogo = false;
 var songs = true;
+var pausedGame = false;
+
+function pauseGame() {
+    pausedGame = !pausedGame;
+}
 
 function stopSongs() {
         if(songs) {
@@ -48,6 +53,8 @@ function start() {
 
         D: 68,
         RIGHT: 39,
+
+        PAUSE: 32 //ou 19
     }
     
     jogo.pressionou = [];
@@ -76,14 +83,21 @@ function start() {
     jogo.timer = setInterval(loop,30); //chama loop() a cada 30ms
 
     function loop() {
-        moveFundo();
-        moveJogador();
-        moveInimigo1();
-        moveInimigo2();
-        moveAmigo();
-        colisao();
-        placar();
-        energia();
+
+        if(jogo.pressionou[TECLA.PAUSE]) {
+            pauseGame();
+        }
+
+        if(pausedGame == false) {
+            moveFundo();
+            moveJogador();
+            moveInimigo1();
+            moveInimigo2();
+            moveAmigo();
+            colisao();
+            placar();
+            energia();
+        }
     }
 
     //Função que movimenta o fundo do jogo
@@ -170,8 +184,11 @@ function start() {
         }
 
         function executaDisparo() {
-            posicaoX = parseInt($("#disparo").css("left"));
-            $("#disparo").css("left", posicaoX+15); //move para a direita
+
+            if(pausedGame == false) {
+                posicaoX = parseInt($("#disparo").css("left"));
+                $("#disparo").css("left", posicaoX+15); //move para a direita    
+            }
 
             if(posicaoX > 900) {
                 window.clearInterval(tempoDisparo);
